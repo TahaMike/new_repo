@@ -7,6 +7,7 @@ class BmiCalculatorUseCase{
 // hello
   dynamic calculateBmi(double weight, double height) {
     print(" ");
+    print('object');
     return _bmiCalculatorRepository.calculateBmi(weight, height);
   }
 }
