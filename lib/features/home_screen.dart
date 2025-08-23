@@ -1,4 +1,4 @@
-import 'package:deficient_callculator/core/router/route_names.dart';
+import 'package:deficient_calculator/core/router/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
