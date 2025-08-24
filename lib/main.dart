@@ -1,4 +1,4 @@
-import 'package:deficient_callculator/core/router/router.dart';
+import 'package:deficient_calculator/core/router/router.dart';
 import 'package:flutter/material.dart';
 
 void main() {

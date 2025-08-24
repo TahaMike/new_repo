@@ -1,4 +1,4 @@
-import 'package:deficient_callculator/features/stroke_risk_calculator/domain/repository/stroke_calculator_repository.dart';
+import 'package:deficient_calculator/features/stroke_risk_calculator/domain/repository/stroke_calculator_repository.dart';
 
 class StrokeCalculatorRepositoryImpl extends StrokeCalculatorRepository {
   @override

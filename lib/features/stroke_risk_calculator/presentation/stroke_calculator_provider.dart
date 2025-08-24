@@ -1,4 +1,4 @@
-import 'package:deficient_callculator/features/stroke_risk_calculator/domain/usecases/stroke_calculator_usecase.dart';
+import 'package:deficient_calculator/features/stroke_risk_calculator/domain/usecases/stroke_calculator_usecase.dart';
 import 'package:flutter/cupertino.dart';
 
 class StrokeCalculatorProvider extends ChangeNotifier {
