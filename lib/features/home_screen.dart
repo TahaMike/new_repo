@@ -50,6 +50,12 @@ class HomeScreen extends StatelessWidget {
                       icon: Icons.person_2_outlined,
                       onTap: () => context.push(RouteNames.bmiCalculator)
                   ),
+                  const SizedBox(height: 12),
+                  _CalculatorCard(
+                      title: 'Todo',
+                      icon: Icons.calendar_today_outlined,
+                      onTap: () => context.push(RouteNames.counter)
+                  ),
                 ],
               ),
             ),
