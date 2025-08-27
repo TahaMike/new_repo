@@ -4,5 +4,6 @@ class RouteNames {
   static const String ironCalculator = '/iron_calculator';
   static const String strokeCalculator = '/stroke_calculator';
   static const String bmiCalculator = '/bmi_calculator';
+  static const String counter = '/counter';
 
 }

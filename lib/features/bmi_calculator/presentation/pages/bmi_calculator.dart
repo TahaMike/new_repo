@@ -53,11 +53,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
       appBar: AppBar(
         title: const Text('BMI Calculator'),
         centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_rounded),
-          onPressed: () => context.pop(),
-          tooltip: 'Back',
-        ),
+        leading: IconButton(icon: const Icon(Icons.arrow_back_rounded), onPressed: () => context.pop(), tooltip: 'Back'),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -91,6 +87,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                       focusNode: _heightFocusNode,
                       keyboardType: const TextInputType.numberWithOptions(decimal: true),
                       textInputAction: TextInputAction.done,
+
                       decoration: const InputDecoration(
                         labelText: 'Height',
                         hintText: 'Enter height in centimeters',
@@ -98,7 +95,11 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                         border: OutlineInputBorder(),
                       ),
                       validator: (v) => _validatePositiveNumber(v, strictlyPositive: true),
-                      onFieldSubmitted: (_) => _calculate(),
+                      onFieldSubmitted: (_) {
+                            _calculate();
+                            FocusScope.of(context).unfocus();
+                      },
+
                     ),
                     const SizedBox(height: 24),
                     Consumer<BmiCalculatorProvider>(
@@ -106,11 +107,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                         return FilledButton.icon(
                           onPressed: provider.isLoading ? null : _calculate,
                           icon: provider.isLoading
-                              ? const SizedBox(
-                                  width: 18,
-                                  height: 18,
-                                  child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
-                                )
+                              ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
                               : const Icon(Icons.calculate_rounded),
                           label: Text(provider.isLoading ? 'Calculating...' : 'Calculate'),
                         );

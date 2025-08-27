@@ -17,48 +17,47 @@ class HomeScreen extends StatelessWidget {
         // leading: IconButton(onPressed: () {
         // }, icon: Icon(Icons.restart_alt)),
       ),
-      body: _HomeBody(),
-    );
-  }
-}
-
-class _HomeBody extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedContainer(
-      height: double.maxFinite,
-      width: double.maxFinite,
-      duration: Duration(milliseconds: 300),
-      // decoration: BoxDecoration(
-      //   color: AppTheme.bgColor?.withOpacity(0.58),
-      // ),
-      child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 600),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                _CalculatorCard(
-                  title: 'Iron Deficit Calculator',
-                  icon: Icons.science_rounded,
-                  onTap: () => context.push(RouteNames.ironCalculator),
-                ),
-                const SizedBox(height: 12),
-                _CalculatorCard(
-                  title: 'Stroke Risk Calculator',
-                  icon: Icons.monitor_heart_rounded,
-                  onTap: () => context.push(RouteNames.strokeCalculator),
-                ),
-                const SizedBox(height: 12),
-                _CalculatorCard(
-                  title: 'BMI Calculator',
-                  icon: Icons.person_2_outlined,
-                  onTap: () => context.push(RouteNames.bmiCalculator)
-                ),
-              ],
+      body: AnimatedContainer(
+        height: double.maxFinite,
+        width: double.maxFinite,
+        duration: Duration(milliseconds: 300),
+        // decoration: BoxDecoration(
+        //   color: AppTheme.bgColor?.withOpacity(0.58),
+        // ),
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 600),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  _CalculatorCard(
+                    title: 'Iron Deficit Calculator',
+                    icon: Icons.science_rounded,
+                    onTap: () => context.push(RouteNames.ironCalculator),
+                  ),
+                  const SizedBox(height: 12),
+                  _CalculatorCard(
+                    title: 'Stroke Risk Calculator',
+                    icon: Icons.monitor_heart_rounded,
+                    onTap: () => context.push(RouteNames.strokeCalculator),
+                  ),
+                  const SizedBox(height: 12),
+                  _CalculatorCard(
+                      title: 'BMI Calculator',
+                      icon: Icons.person_2_outlined,
+                      onTap: () => context.push(RouteNames.bmiCalculator)
+                  ),
+                  const SizedBox(height: 12),
+                  _CalculatorCard(
+                      title: 'Todo',
+                      icon: Icons.calendar_today_outlined,
+                      onTap: () => context.push(RouteNames.counter)
+                  ),
+                ],
+              ),
             ),
           ),
         ),

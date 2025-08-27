@@ -1,9 +1,13 @@
 import 'package:deficient_calculator/core/router/route_names.dart';
+import 'package:deficient_calculator/features/counter/data/repository/counter_repository_impl.dart';
+import 'package:deficient_calculator/features/counter/domain/usecase/counter_usecase.dart';
+import 'package:deficient_calculator/features/counter/presentation/pages/counter.dart';
+import 'package:deficient_calculator/features/counter/presentation/provider/counter_provider.dart';
 import 'package:deficient_calculator/features/home_screen.dart';
 import 'package:deficient_calculator/features/iron_calculator/presentation/pages/iron_calculator.dart';
 import 'package:deficient_calculator/features/stroke_risk_calculator/data/repository/stroke_calculator_repository_impl.dart';
 import 'package:deficient_calculator/features/stroke_risk_calculator/domain/usecases/stroke_calculator_usecase.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -92,8 +96,37 @@ class AppRouter {
           );
         },
       ),
+      //
+      GoRoute(
+        path: RouteNames.counter,
+        name: RouteNames.counter,
+        pageBuilder: (context, state) {
+          final CounterUseCase counterUseCase = CounterUseCase(CounterRepositoryImpl());
+          final pageChild = ChangeNotifierProvider(
+            create: (_) => CounterProvider(counterUseCase),
+            builder: (context, child) => Counter(),
+          );
+          return _buildTransitionPage(
+            key: state.pageKey,
+            child: pageChild,
+            transition: _RouteTransition.fadeSlide,
+          );
+        },
+      ),
+      //
+      // GoRoute(path: RouteNames.counter, name: RouteNames.counter, pageBuilder: (context, state,) {
+      //   return MaterialPage(
+      //    child: ChangeNotifierProvider(
+      //     create: (_) => CounterProvider(CounterUseCase(CounterRepositoryImpl())),
+      //     builder: (context, child) => Counter(),
+      //    ),
+      //   );
+      //   // return ChangeNotifierProvider(create: (_) => CounterProvider(CounterUseCase(CounterRepositoryImpl())), builder: (context, child) => Counter(),)
+      //  },
+      // )
     ],
   );
+
 
   static CustomTransitionPage _buildTransitionPage({
     required LocalKey key,
