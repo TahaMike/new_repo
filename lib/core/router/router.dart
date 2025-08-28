@@ -7,6 +7,11 @@ import 'package:deficient_calculator/features/home_screen.dart';
 import 'package:deficient_calculator/features/iron_calculator/presentation/pages/iron_calculator.dart';
 import 'package:deficient_calculator/features/stroke_risk_calculator/data/repository/stroke_calculator_repository_impl.dart';
 import 'package:deficient_calculator/features/stroke_risk_calculator/domain/usecases/stroke_calculator_usecase.dart';
+import 'package:deficient_calculator/features/todo_app/data/repository/todo_repository_impl.dart';
+import 'package:deficient_calculator/features/todo_app/domain/repository/todo_repository.dart';
+import 'package:deficient_calculator/features/todo_app/domain/usecase/todo_usecase.dart';
+import 'package:deficient_calculator/features/todo_app/presentation/pages/todo_screen.dart';
+import 'package:deficient_calculator/features/todo_app/presentation/provider/todo_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -113,17 +118,18 @@ class AppRouter {
           );
         },
       ),
-      //
-      // GoRoute(path: RouteNames.counter, name: RouteNames.counter, pageBuilder: (context, state,) {
-      //   return MaterialPage(
-      //    child: ChangeNotifierProvider(
-      //     create: (_) => CounterProvider(CounterUseCase(CounterRepositoryImpl())),
-      //     builder: (context, child) => Counter(),
-      //    ),
-      //   );
-      //   // return ChangeNotifierProvider(create: (_) => CounterProvider(CounterUseCase(CounterRepositoryImpl())), builder: (context, child) => Counter(),)
-      //  },
-      // )
+
+      GoRoute(
+        path: RouteNames.todoapp, name: RouteNames.todoapp, pageBuilder: (context, state,) {
+        return MaterialPage(
+         child: ChangeNotifierProvider(
+          create: (_) => TodoProvider(TodoUseCase(TodoRepositoryImpl()) ),
+          builder: (context, child) => TodoScreen(),
+         ),
+        );
+        // return ChangeNotifierProvider(create: (_) => CounterProvider(CounterUseCase(CounterRepositoryImpl())), builder: (context, child) => Counter(),)
+       },
+      )
     ],
   );
 
