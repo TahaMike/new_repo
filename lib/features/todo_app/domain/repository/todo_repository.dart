@@ -4,7 +4,7 @@ abstract class TodoRepository{
 
   void addTask(Task task);
 
-  void deleteTask(String taskId);
+  void deleteTask(Task task);
 
-  void updateTask(String taskId, String taskTitle, String taskDescription, int taskStatus);
+  void updateTask(Task task);
 }

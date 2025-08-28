@@ -18,8 +18,21 @@ class TodoRepositoryImpl extends TodoRepository {
   }
 
   @override
-  void deleteTask(String taskId) {}
+  void deleteTask(Task task) {
+    _taskList.removeWhere((task) => task.taskId == task.taskId);
+  }
 
   @override
-  void updateTask(String taskId, String taskTitle, String taskDescription, int taskStatus) {}
+  void updateTask(Task task) {
+    final index = _taskList.indexWhere((t) => t.taskId == task.taskId);
+    if (index != -1) {
+      _taskList[index] = TaskModel(
+        taskId: task.taskId,
+        taskTitle: task.taskTitle,
+        taskDescription: task.taskDescription,
+        taskStatus: task.taskStatus,
+        taskPriority: task.taskPriority,
+      );
+    }
+  }
 }
