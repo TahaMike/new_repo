@@ -1,5 +1,4 @@
 import 'package:deficient_calculator/features/counter/presentation/provider/counter_provider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +16,12 @@ class Counter extends StatelessWidget {
       ),
       body: Consumer<CounterProvider>(
         builder: (BuildContext context, CounterProvider value, Widget? child) {
-          return Center(child: Text(value.num.toString(), style: TextStyle(fontSize: 35)));
+          return Center(
+            child: Text(
+              value.num.toString(),
+              style: TextStyle(fontSize: 35),
+            ),
+          );
         },
       ),
       floatingActionButton: FloatingActionButton(
