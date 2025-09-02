@@ -6,9 +6,9 @@ class TodoUseCase {
   final TodoRepository _todoRepository;
   TodoUseCase(this._todoRepository);
 
-  void addTask(Task task) => _todoRepository.addTask(task);
+  Task addTask(Task task) => _todoRepository.addTask(task);
 
-  void deleteTask(Task task) => _todoRepository.deleteTask(task);
+  List<Task> deleteTask(Task task, List<Task> taskList) => _todoRepository.deleteTask(task, taskList);
 
-  void updateTask(Task task) => _todoRepository.updateTask(task);
+  List<Task> updateTask(Task task, List<Task> taskList) => _todoRepository.updateTask(task, taskList);
 }

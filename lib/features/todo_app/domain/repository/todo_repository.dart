@@ -2,9 +2,9 @@ import '../entities/task.dart';
 
 abstract class TodoRepository{
 
-  void addTask(Task task);
+  Task addTask(Task task);
 
-  void deleteTask(Task task);
+  List<Task> deleteTask(Task task, List<Task> taskList);
 
-  void updateTask(Task task);
+  List<Task> updateTask(Task task, List<Task> taskList);
 }

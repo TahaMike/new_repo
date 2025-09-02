@@ -3,10 +3,10 @@ import '../../domain/repository/todo_repository.dart';
 import '../model/task_model.dart';
 
 class TodoRepositoryImpl extends TodoRepository {
-  final List<TaskModel> _taskList = [];
+
 
   @override
-  void addTask(Task task) {
+  Task addTask(Task task) {
     final model = TaskModel(
       taskId: task.taskId,
       taskTitle: task.taskTitle,
@@ -14,19 +14,20 @@ class TodoRepositoryImpl extends TodoRepository {
       taskStatus: task.taskStatus,
       taskPriority: task.taskPriority,
     );
-    _taskList.add(model);
+    return model;
   }
 
   @override
-  void deleteTask(Task task) {
-    _taskList.removeWhere((task) => task.taskId == task.taskId);
+  List<Task> deleteTask(Task task, List<Task> taskList) {
+    taskList.removeWhere((task) => task.taskId == task.taskId);
+    return taskList;
   }
 
   @override
-  void updateTask(Task task) {
-    final index = _taskList.indexWhere((t) => t.taskId == task.taskId);
+  List<Task> updateTask(Task task, List<Task> taskList) {
+    final index = taskList.indexWhere((t) => t.taskId == task.taskId);
     if (index != -1) {
-      _taskList[index] = TaskModel(
+      taskList[index] = TaskModel(
         taskId: task.taskId,
         taskTitle: task.taskTitle,
         taskDescription: task.taskDescription,
@@ -34,5 +35,6 @@ class TodoRepositoryImpl extends TodoRepository {
         taskPriority: task.taskPriority,
       );
     }
+    return taskList;
   }
 }

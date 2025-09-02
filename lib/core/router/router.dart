@@ -37,20 +37,12 @@ class AppRouter {
       GoRoute(
         path: RouteNames.splash,
         name: RouteNames.splash,
-        pageBuilder: (context, state) => _buildTransitionPage(
-          key: state.pageKey,
-          child: SplashScreen(),
-          transition: _RouteTransition.fade,
-        ),
+        pageBuilder: (context, state) => _buildTransitionPage(key: state.pageKey, child: SplashScreen(), transition: _RouteTransition.fade),
       ),
       GoRoute(
         path: RouteNames.home,
         name: RouteNames.home,
-        pageBuilder: (context, state) => _buildTransitionPage(
-          key: state.pageKey,
-          child: HomeScreen(),
-          transition: _RouteTransition.fade,
-        ),
+        pageBuilder: (context, state) => _buildTransitionPage(key: state.pageKey, child: HomeScreen(), transition: _RouteTransition.fade),
       ),
       GoRoute(
         path: RouteNames.ironCalculator,
@@ -61,11 +53,7 @@ class AppRouter {
             create: (_) => IronCalculatorProvider(ironCalculatorUseCase),
             builder: (context, child) => IronCalculator(),
           );
-          return _buildTransitionPage(
-            key: state.pageKey,
-            child: pageChild,
-            transition: _RouteTransition.fadeSlide,
-          );
+          return _buildTransitionPage(key: state.pageKey, child: pageChild, transition: _RouteTransition.fadeSlide);
         },
       ),
       GoRoute(
@@ -77,11 +65,7 @@ class AppRouter {
             create: (_) => StrokeCalculatorProvider(strokeCalculatorUseCase),
             builder: (context, child) => StrokeCalculator(),
           );
-          return _buildTransitionPage(
-            key: state.pageKey,
-            child: pageChild,
-            transition: _RouteTransition.fadeSlide,
-          );
+          return _buildTransitionPage(key: state.pageKey, child: pageChild, transition: _RouteTransition.fadeSlide);
         },
       ),
       GoRoute(
@@ -93,11 +77,7 @@ class AppRouter {
             create: (_) => BmiCalculatorProvider(bmiCalculatorUseCase),
             builder: (context, child) => BmiCalculator(),
           );
-          return _buildTransitionPage(
-            key: state.pageKey,
-            child: pageChild,
-            transition: _RouteTransition.fadeSlide,
-          );
+          return _buildTransitionPage(key: state.pageKey, child: pageChild, transition: _RouteTransition.fadeSlide);
         },
       ),
       //
@@ -106,38 +86,24 @@ class AppRouter {
         name: RouteNames.counter,
         pageBuilder: (context, state) {
           final CounterUseCase counterUseCase = CounterUseCase(CounterRepositoryImpl());
-          final pageChild = ChangeNotifierProvider(
-            create: (_) => CounterProvider(counterUseCase),
-            builder: (context, child) => Counter(),
-          );
-          return _buildTransitionPage(
-            key: state.pageKey,
-            child: pageChild,
-            transition: _RouteTransition.fadeSlide,
-          );
+          final pageChild = ChangeNotifierProvider(create: (_) => CounterProvider(counterUseCase), builder: (context, child) => Counter());
+          return _buildTransitionPage(key: state.pageKey, child: pageChild, transition: _RouteTransition.fadeSlide);
         },
       ),
 
       GoRoute(
-        path: RouteNames.todoapp, name: RouteNames.todoapp, pageBuilder: (context, state,) {
-        return MaterialPage(
-         child: ChangeNotifierProvider(
-          create: (_) => TodoProvider(TodoUseCase(TodoRepositoryImpl()) ),
-          builder: (context, child) => TodoScreen(),
-         ),
-        );
-        // return ChangeNotifierProvider(create: (_) => CounterProvider(CounterUseCase(CounterRepositoryImpl())), builder: (context, child) => Counter(),)
-       },
-      )
+        path: RouteNames.todoapp,
+        name: RouteNames.todoapp,
+        pageBuilder: (context, state) {
+          return MaterialPage(
+            child: ChangeNotifierProvider(create: (_) => TodoProvider(TodoUseCase(TodoRepositoryImpl())), builder: (context, child) => TodoScreen()),
+          );
+        },
+      ),
     ],
   );
 
-
-  static CustomTransitionPage _buildTransitionPage({
-    required LocalKey key,
-    required Widget child,
-    required _RouteTransition transition,
-  }) {
+  static CustomTransitionPage _buildTransitionPage({required LocalKey key, required Widget child, required _RouteTransition transition}) {
     return CustomTransitionPage(
       key: key,
       child: child,
@@ -147,8 +113,7 @@ class AppRouter {
           case _RouteTransition.fade:
             return FadeTransition(opacity: animation, child: child);
           case _RouteTransition.fadeSlide:
-            final offsetTween = Tween<Offset>(begin: const Offset(0.05, 0.02), end: Offset.zero)
-                .chain(CurveTween(curve: Curves.easeOut));
+            final offsetTween = Tween<Offset>(begin: const Offset(0.05, 0.02), end: Offset.zero).chain(CurveTween(curve: Curves.easeOut));
             return FadeTransition(
               opacity: animation,
               child: SlideTransition(position: animation.drive(offsetTween), child: child),
