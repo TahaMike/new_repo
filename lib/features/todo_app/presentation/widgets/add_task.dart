@@ -26,6 +26,8 @@ class _AddTaskState extends State<AddTask> {
   void dispose() {
     _taskTitle.dispose();
     _taskDescription.dispose();
+    _taskDescriptionNode.dispose();
+    _taskTitleNode.dispose();
     super.dispose();
   }
 
