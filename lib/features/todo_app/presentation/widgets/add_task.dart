@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
+
+import '../../domain/entities/task.dart';
+import '../provider/todo_provider.dart';
 
 class AddTask extends StatefulWidget {
-  const AddTask({super.key});
+  final BuildContext mainContext;
+
+  const AddTask({super.key, required this.mainContext});
 
   @override
   State<AddTask> createState() => _AddTaskState();
@@ -20,7 +27,6 @@ class _AddTaskState extends State<AddTask> {
   final FocusNode _taskDescriptionNode = FocusNode();
 
   final Map<int, String> taskPriority = {1: "High", 2: "Medium", 3: "Low"};
-  final Map<int, String> taskStatus = {1: "completed", 2: "on going"};
 
   @override
   void dispose() {
@@ -47,7 +53,7 @@ class _AddTaskState extends State<AddTask> {
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
               ),
               validator: (value) {
-                if (value == null) {
+                if (value == null || value.trim().isEmpty) {
                   return 'Please enter a value';
                 }
                 return null;
@@ -61,7 +67,7 @@ class _AddTaskState extends State<AddTask> {
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
               ),
               validator: (value) {
-                if (value == null) {
+                if (value == null || value.trim().isEmpty) {
                   return 'Please enter a value';
                 }
                 return null;
@@ -78,7 +84,10 @@ class _AddTaskState extends State<AddTask> {
                   Padding(
                     padding: const EdgeInsets.all(10),
                     child: Text(
-                      "Selected: ${_selectedPriority != null ? taskPriority[_selectedPriority] : "None"}",
+                      "${_selectedPriority != null
+                        ? taskPriority[_selectedPriority]
+                        : "None"
+                      }",
                     ),
                   ),
                   IconButton(
@@ -96,14 +105,12 @@ class _AddTaskState extends State<AddTask> {
                           setState(() {
                             _selectedPriority = value;
                           });
-                        }
-                        else {
+                        } else {
                           return "Please select priority";
                         }
                       });
                     },
                     icon: Icon(Icons.arrow_drop_down, size: 25),
-
                   ),
                 ],
               ),
@@ -118,9 +125,31 @@ class _AddTaskState extends State<AddTask> {
                   },
                   child: Text('Cancel'),
                 ),
-                ElevatedButton(onPressed: () {
-
-                }, child: Text('Add Task')),
+                ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      if (_selectedPriority == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Select Priority')));
+                        return;
+                      }
+                      final task = Task(
+                        taskId: Uuid().v4(),
+                        // taskId: DateTime.now().millisecondsSinceEpoch.toString(),
+                        // random and unique id must be created
+                        taskTitle: _taskTitle.text,
+                        taskDescription: _taskDescription.text,
+                        taskPriority: _selectedPriority!,
+                        taskStatus: 1,
+                      );
+                      widget.mainContext.read<TodoProvider>().addTask(task);
+                    }
+                    _selectedPriority = null;
+                    _taskTitle.clear();
+                    _taskDescription.clear();
+                    context.pop();
+                  },
+                  child: Text('Add Task'),
+                ),
               ],
             ),
           ],
