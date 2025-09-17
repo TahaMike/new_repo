@@ -1,4 +1,16 @@
 import 'package:deficient_calculator/core/router/route_names.dart';
+import 'package:deficient_calculator/features/api_example/data/repository/api_repository_impl.dart';
+import 'package:deficient_calculator/features/api_example/domain/usecase/api_usecase.dart';
+import 'package:deficient_calculator/features/api_example/presentation/pages/api_example.dart';
+import 'package:deficient_calculator/features/api_example/presentation/provider/api_example_provider.dart';
+import 'package:deficient_calculator/features/news_app/data/repository/news_repository_impl.dart';
+import 'package:deficient_calculator/features/news_app/domain/usecase/news_use_case.dart';
+import 'package:deficient_calculator/features/news_app/presentation/pages/news_page.dart';
+import 'package:deficient_calculator/features/news_app/presentation/provider/news_provider.dart';
+import 'package:deficient_calculator/features/weather_app/data/repository/weather_app_repository_impl.dart';
+import 'package:deficient_calculator/features/weather_app/domain/use_case/weather_use_case.dart';
+import 'package:deficient_calculator/features/weather_app/presentation/pages/weather_home_page.dart';
+import 'package:deficient_calculator/features/weather_app/presentation/provider/weather_page_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -99,6 +111,42 @@ class AppRouter {
             child: ChangeNotifierProvider(create: (_) => TodoProvider(TodoUseCase(TodoRepositoryImpl())), builder: (context, child) => TodoScreen()),
           );
         },
+      ),
+      GoRoute(
+        path: RouteNames.apiExample,
+        name: RouteNames.apiExample,
+        pageBuilder: (context, state) {
+          return MaterialPage(
+            child: ChangeNotifierProvider(
+              create: (_) => ApiProvider(ApiUseCase(ApiRepositoryImpl())),
+              builder: (context, child) => ApiExample(),
+            )
+          );
+        }
+      ),
+      GoRoute(
+        path: RouteNames.newsApp,
+        name: RouteNames.newsApp,
+        pageBuilder: (context, state) {
+          return MaterialPage(
+            child: ChangeNotifierProvider(
+              create: (_) => NewsProvider(NewsUseCase(NewsRepositoryImpl())),
+              builder: (context, child) => NewsPage(),
+            )
+          );
+        }
+      ),
+      GoRoute(
+        path: RouteNames.weatherApp,
+        name: RouteNames.weatherApp,
+        pageBuilder: (context, state) {
+          return MaterialPage(
+            child: ChangeNotifierProvider(
+              create: (_) => WeatherProvider(WeatherUseCase(WeatherRepositoryImpl())),
+              builder: (context, child) => WeatherHomePage(),
+            )
+          );
+        }
       ),
     ],
   );
