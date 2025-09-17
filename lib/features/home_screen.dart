@@ -33,34 +33,52 @@ class HomeScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  // _CalculatorCard(
+                  //   title: 'Iron Deficit Calculator',
+                  //   icon: Icons.science_rounded,
+                  //   onTap: () => context.push(RouteNames.ironCalculator),
+                  // ),
+                  // const SizedBox(height: 12),
+                  // _CalculatorCard(
+                  //   title: 'Stroke Risk Calculator',
+                  //   icon: Icons.monitor_heart_rounded,
+                  //   onTap: () => context.push(RouteNames.strokeCalculator),
+                  // ),
+                  // const SizedBox(height: 12),
+                  // _CalculatorCard(
+                  //     title: 'BMI Calculator',
+                  //     icon: Icons.person_2_outlined,
+                  //     onTap: () => context.push(RouteNames.bmiCalculator)
+                  // ),
+                  // const SizedBox(height: 12),
+                  // _CalculatorCard(
+                  //     title: 'Todo',
+                  //     icon: Icons.calendar_today_outlined,
+                  //     onTap: () => context.push(RouteNames.todoapp)
+                  // ),
+                  // const SizedBox(height: 12),
+                  // _CalculatorCard(
+                  //     title: 'counter',
+                  //     icon: Icons.calendar_today_outlined,
+                  //     onTap: () => context.push(RouteNames.counter)
+                  // ),
+                  // const SizedBox(height: 12),
+                  // _CalculatorCard(
+                  //     title: 'Api Example',
+                  //     icon: Icons.api_outlined,
+                  //     onTap: () => context.push(RouteNames.apiExample)
+                  // ),
+                  const SizedBox(height: 12),
                   _CalculatorCard(
-                    title: 'Iron Deficit Calculator',
-                    icon: Icons.science_rounded,
-                    onTap: () => context.push(RouteNames.ironCalculator),
+                      title: 'News App',
+                      icon: Icons.newspaper,
+                      onTap: () => context.push(RouteNames.newsApp)
                   ),
                   const SizedBox(height: 12),
                   _CalculatorCard(
-                    title: 'Stroke Risk Calculator',
-                    icon: Icons.monitor_heart_rounded,
-                    onTap: () => context.push(RouteNames.strokeCalculator),
-                  ),
-                  const SizedBox(height: 12),
-                  _CalculatorCard(
-                      title: 'BMI Calculator',
-                      icon: Icons.person_2_outlined,
-                      onTap: () => context.push(RouteNames.bmiCalculator)
-                  ),
-                  const SizedBox(height: 12),
-                  _CalculatorCard(
-                      title: 'Todo',
-                      icon: Icons.calendar_today_outlined,
-                      onTap: () => context.push(RouteNames.todoapp)
-                  ),
-                  const SizedBox(height: 12),
-                  _CalculatorCard(
-                      title: 'counter',
-                      icon: Icons.calendar_today_outlined,
-                      onTap: () => context.push(RouteNames.counter)
+                      title: 'Weather App',
+                      icon: Icons.cloud,
+                      onTap: () => context.push(RouteNames.weatherApp)
                   ),
                 ],
               ),
